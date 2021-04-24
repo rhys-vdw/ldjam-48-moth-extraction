@@ -1,0 +1,15 @@
+﻿# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/contentModel.xml
+/.idea.negative-nancy.iml
+/projectSettingsUpdater.xml
+/modules.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+
+# Hiding these two because I _think_ we do not need to share them among the
+# team. They will be regenerated from the .sln
+/indexLayout.xml
+/riderModule.iml
