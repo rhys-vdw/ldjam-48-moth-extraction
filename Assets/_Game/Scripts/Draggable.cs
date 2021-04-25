@@ -6,11 +6,13 @@ namespace Moth {
     [SerializeField] SpriteRenderer[] _spriteRenderers = null;
     Rigidbody2D _rigidbody2D = null;
     Camera _camera;
-    Vector2 _prevPosition;
     bool _isDragging = false;
     static readonly Plane _plane = new Plane(Vector3.back, Vector3.zero);
     Color _defaultColor;
     [SerializeField] Color _dragColor = Color.white;
+    [SerializeField] float _rotateSpeed = 180f;
+    [SerializeField] bool _kinematicOnDrag = true;
+    Vector2 _relativePosition;
 
     public static bool IsAnyDragging { get; private set; }
 
@@ -31,10 +33,11 @@ namespace Moth {
     }
 
     void OnMouseDown() {
-      _prevPosition = GetPosition();
+      var position = GetPosition();
+      _relativePosition = (Vector2) transform.position - position;
       _isDragging = true;
       IsAnyDragging = true;
-      // _rigidbody2D.isKinematic = true;
+      _rigidbody2D.isKinematic = _kinematicOnDrag;
       SetColor(_dragColor);
     }
 
@@ -46,18 +49,23 @@ namespace Moth {
       if (_isDragging && Input.GetMouseButtonUp(0)) {
         _isDragging = false;
         IsAnyDragging = false;
-        // _rigidbody2D.isKinematic = false;
+        _rigidbody2D.isKinematic = false;
         SetColor(_defaultColor);
       }
     }
 
+    static readonly Quaternion PreferredRotation = Quaternion.Euler(0, 0, 180f);
+
     void FixedUpdate() {
       if (_isDragging) {
-        var position = GetPosition();
-        // var delta = position - _prevPosition;
-        // Debug.DrawLine(_prevPosition, position, Color.red);
-        // _prevPosition = position;
-        _rigidbody2D.MovePosition(position);
+        _rigidbody2D.MoveRotation(
+          Quaternion.RotateTowards(
+            transform.rotation,
+            PreferredRotation,
+            _rotateSpeed * Time.deltaTime
+          )
+        );
+        _rigidbody2D.MovePosition(GetPosition() + _relativePosition);
       }
     }
   }
