@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class Moth : MonoBehaviour {
   [Header("References")]
-  [SerializeField] HingeJoint2D[] _bodyJoints;
-  [SerializeField] HingeJoint2D _leftWingJoint;
-  [SerializeField] HingeJoint2D _rightWingJoint;
+  [SerializeField] HingeJoint2D[] _bodyJoints = null;
+  [SerializeField] HingeJoint2D _leftWingJoint = null;
+  [SerializeField] HingeJoint2D _rightWingJoint = null;
+  [SerializeField] Transform _rightWingScaler = null;
+  [SerializeField] Transform _leftWingScaler = null;
 
   [Header("Flapping")]
   [SerializeField] float _flapInterval = 0.2f;
   [SerializeField] float _flapSpeed = 360f;
   [SerializeField] float _flapTorque = 20f;
+  [SerializeField] float _minScale = 0.2f;
 
   public bool IsFlapping = false;
   float _nextFlapDirectionChangeTime;
@@ -34,6 +37,15 @@ public class Moth : MonoBehaviour {
           maxMotorTorque = _flapTorque
         };
       }
+    }
+
+    {
+      var distance = _leftWingJoint.jointAngle - _leftWingJoint.limits.min;
+      _leftWingScaler.localScale = new Vector3(1, Mathf.Clamp(distance / 90f, _minScale, 1), 1);
+    }
+    {
+      var distance = _rightWingJoint.limits.max - _rightWingJoint.jointAngle;
+      _rightWingScaler.localScale = new Vector3(1, Mathf.Clamp(distance / 90f, _minScale, 1), 1);
     }
   }
 }

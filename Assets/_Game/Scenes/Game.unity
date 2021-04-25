@@ -368,8 +368,8 @@ HingeJoint2D:
     m_MaximumMotorForce: 10000
   m_UseLimits: 1
   m_AngleLimits:
-    m_LowerAngle: 264.05023
-    m_UpperAngle: 437.0656
+    m_LowerAngle: -20
+    m_UpperAngle: 20
 --- !u!50 &192768412
 Rigidbody2D:
   serializedVersion: 4
@@ -480,9 +480,12 @@ MonoBehaviour:
   _bodyJoints: []
   _leftWingJoint: {fileID: 124949053}
   _rightWingJoint: {fileID: 1934208452}
-  _flapInterval: 1
+  _rightWingScaler: {fileID: 1495698076}
+  _leftWingScaler: {fileID: 1024874953}
+  _flapInterval: 0.4
   _flapSpeed: 360
   _flapTorque: 60
+  _minScale: 0.2
   IsFlapping: 1
 --- !u!1 &424837218
 GameObject:
@@ -2476,8 +2479,8 @@ HingeJoint2D:
     m_MaximumMotorForce: 10000
   m_UseLimits: 1
   m_AngleLimits:
-    m_LowerAngle: 264.05023
-    m_UpperAngle: 437.0656
+    m_LowerAngle: -20
+    m_UpperAngle: 20
 --- !u!50 &6526183190728863046
 Rigidbody2D:
   serializedVersion: 4
