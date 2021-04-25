@@ -12,6 +12,13 @@ namespace Moth {
     [SerializeField] float _velocityDecay = 1f;
 
     Vector3 _currentVelocity;
+    WinTrigger _winTrigger;
+    Brain _brain;
+
+    void Awake() {
+      _winTrigger = FindObjectOfType<WinTrigger>();
+      _brain = FindObjectOfType<Brain>();
+    }
 
     void LateUpdate() {
       void MoveTo(float x, float smoothTime) {
@@ -23,6 +30,16 @@ namespace Moth {
           ref _currentVelocity,
           smoothTime
         );
+      }
+
+      if (_brain.IsDead) {
+        MoveTo(_minX, _inSmoothTime);
+        return;
+      }
+
+      if (_winTrigger.DidWin) {
+        MoveTo(_maxX, _outSmoothTime);
+        return;
       }
 
       if (Input.mousePosition.x > Screen.width * (1 - _scrollRegion)) {

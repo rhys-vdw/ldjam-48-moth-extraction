@@ -32,6 +32,13 @@ namespace Moth
     public bool IsFlapping = false;
     public bool IsWiggling = false;
 
+    void Update() {
+      if (Draggable.IsAnyDragging) {
+        IsFlapping = true;
+        IsWiggling = true;
+      }
+    }
+
     void FixedUpdate() {
       _leftWingJoint.useMotor = IsFlapping;
       _rightWingJoint.useMotor = IsFlapping;

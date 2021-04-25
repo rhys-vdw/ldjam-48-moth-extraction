@@ -17,8 +17,7 @@ namespace Moth {
       if (IsDead) return;
 
       if (other.TryGetComponent<Moth>(out var moth)) {
-        moth.IsFlapping = false;
-        moth.IsWiggling = false;
+        Destroy(moth);
         foreach (var r in moth.GetComponentsInChildren<Rigidbody2D>()) {
           r.simulated = false;
         }
