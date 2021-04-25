@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+static class JointMotor2DUtility {
+  public static JointMotor2D WithSpeed(this JointMotor2D motor, float speed) => new JointMotor2D {
+    motorSpeed = speed,
+    maxMotorTorque = motor.maxMotorTorque
+  };
+}
+
 public class Moth : MonoBehaviour {
   [Header("References")]
   [SerializeField] HingeJoint2D[] _bodyJoints = null;
@@ -11,32 +18,19 @@ public class Moth : MonoBehaviour {
   [SerializeField] Transform _leftWingScaler = null;
 
   [Header("Flapping")]
-  [SerializeField] float _flapInterval = 0.2f;
+  [SerializeField] float _flapFrequency = 1f;
   [SerializeField] float _flapSpeed = 360f;
-  [SerializeField] float _flapTorque = 20f;
   [SerializeField] float _minScale = 0.2f;
 
   public bool IsFlapping = false;
-  float _nextFlapDirectionChangeTime;
 
   void FixedUpdate() {
     _leftWingJoint.useMotor = IsFlapping;
     _rightWingJoint.useMotor = IsFlapping;
     if (IsFlapping) {
-      if (Time.time > _nextFlapDirectionChangeTime) {
-        _nextFlapDirectionChangeTime = Time.time + _flapInterval;
-        var flapSpeed = _leftWingJoint.motor.motorSpeed < 0
-          ? _flapSpeed
-          : -_flapSpeed;
-        _leftWingJoint.motor = new JointMotor2D {
-          motorSpeed = flapSpeed,
-          maxMotorTorque = _flapTorque
-        };
-        _rightWingJoint.motor = new JointMotor2D {
-          motorSpeed = -flapSpeed,
-          maxMotorTorque = _flapTorque
-        };
-      }
+      var speed = _flapSpeed * Mathf.Sin(_flapFrequency * Time.time);
+      _leftWingJoint.motor = _leftWingJoint.motor.WithSpeed(speed);
+      _rightWingJoint.motor = _rightWingJoint.motor.WithSpeed(-speed);
     }
 
     {

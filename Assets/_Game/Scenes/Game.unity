@@ -192,7 +192,7 @@ HingeJoint2D:
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
-    m_MaximumMotorForce: 10000
+    m_MaximumMotorForce: 20
   m_UseLimits: 1
   m_AngleLimits:
     m_LowerAngle: -90
@@ -482,9 +482,8 @@ MonoBehaviour:
   _rightWingJoint: {fileID: 1934208452}
   _rightWingScaler: {fileID: 1495698076}
   _leftWingScaler: {fileID: 1024874953}
-  _flapInterval: 0.4
-  _flapSpeed: 360
-  _flapTorque: 60
+  _flapFrequency: 3.5
+  _flapSpeed: 500
   _minScale: 0.2
   IsFlapping: 1
 --- !u!1 &424837218
@@ -2096,7 +2095,7 @@ HingeJoint2D:
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
-    m_MaximumMotorForce: 10000
+    m_MaximumMotorForce: 20
   m_UseLimits: 1
   m_AngleLimits:
     m_LowerAngle: -110
