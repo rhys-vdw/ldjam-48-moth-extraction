@@ -25,7 +25,7 @@ namespace Moth
           other.ClosestPoint(transform.position)
         );
         _joint.breakForce = _maxBreakForce;
-        Debug.Log("Connected to moth", _joint);
+        // Debug.Log("Connected to moth", _joint);
       }
     }
   }
