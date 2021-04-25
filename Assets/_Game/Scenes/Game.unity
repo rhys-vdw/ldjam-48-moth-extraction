@@ -1124,8 +1124,8 @@ MonoBehaviour:
   _minX: -14.67
   _target: {fileID: 8742538545102393437}
   _scrollRegion: 0.1
-  _inSmoothTime: 0.2
-  _outSmoothTime: 0.2
+  _inSmoothTime: 0.6
+  _outSmoothTime: 0.6
   _velocityDecay: 4
 --- !u!20 &519420031
 Camera:
