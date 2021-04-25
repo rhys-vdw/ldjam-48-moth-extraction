@@ -1,5 +1,42 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!50 &5491720793734153847
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450312074252882088}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!70 &5491720793734153846
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450312074252882088}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.45, y: 0.83}
+  m_Direction: 0
 --- !u!1 &1632321767671300491
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +48,7 @@ GameObject:
   - component: {fileID: 2737556381880053169}
   - component: {fileID: 1632321767671300489}
   - component: {fileID: 1632321767671300490}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AntennaLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +106,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.4074094, y: -0.044606306}
-  m_ConnectedAnchor: {x: -0.04904461, y: 0.4254377}
+  m_ConnectedAnchor: {x: -0.04904445, y: 0.42543757}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -90,7 +127,7 @@ GameObject:
   - component: {fileID: 5491720793019013669}
   - component: {fileID: 5491720793019013670}
   - component: {fileID: 5491720793019013671}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tail2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,11 +201,11 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0.18574725, y: 0.016135614}
-  m_ConnectedAnchor: {x: -0.22725284, y: 0.00013564301}
+  m_ConnectedAnchor: {x: -0.22725302, y: 0.00013552608}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
-    m_MaximumMotorForce: 10000
+    m_MaximumMotorForce: 100
   m_UseLimits: 1
   m_AngleLimits:
     m_LowerAngle: -20
@@ -182,7 +219,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5491720793173603590}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Scaler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +252,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5491720793589443885}
   - component: {fileID: 5491720793589443884}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Moth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -257,7 +294,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c699f32a93652fc499036912deffb89f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bodyJoints: []
+  _bodyJoints:
+  - {fileID: 5491720794571723291}
+  - {fileID: 5491720793019013671}
+  - {fileID: 5491720794013440520}
+  - {fileID: 5491720793781562539}
   _leftWingJoint: {fileID: 5491720793813024498}
   _rightWingJoint: {fileID: 5491720794149142795}
   _rightWingScaler: {fileID: 5491720794848224851}
@@ -265,44 +306,10 @@ MonoBehaviour:
   _flapFrequency: 3.5
   _flapSpeed: 500
   _minScale: 0.2
-  IsFlapping: 1
---- !u!50 &5491720793734153847
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 450312074252882088}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!70 &5491720793734153846
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 450312074252882088}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.45, y: 0.83}
-  m_Direction: 0
+  _wiggleFrequency: 3
+  _wiggleSpeed: 360
+  IsFlapping: 0
+  IsWiggling: 0
 --- !u!1 &5491720793781562541
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,7 +322,7 @@ GameObject:
   - component: {fileID: 5491720793781562537}
   - component: {fileID: 5491720793781562538}
   - component: {fileID: 5491720793781562539}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tail4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -389,11 +396,11 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0.15785934, y: -0.04130565}
-  m_ConnectedAnchor: {x: -0.12356734, y: -0.04053546}
+  m_ConnectedAnchor: {x: -0.1235675, y: -0.040535595}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
-    m_MaximumMotorForce: 10000
+    m_MaximumMotorForce: 100
   m_UseLimits: 1
   m_AngleLimits:
     m_LowerAngle: -20
@@ -410,7 +417,7 @@ GameObject:
   - component: {fileID: 5491720793813024499}
   - component: {fileID: 5491720793813024497}
   - component: {fileID: 5491720793813024498}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LeftWing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -484,7 +491,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -1.072168, y: -0.046467718}
-  m_ConnectedAnchor: {x: -0.22783184, y: 0.16646779}
+  m_ConnectedAnchor: {x: -0.22783192, y: 0.16646756}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -505,7 +512,7 @@ GameObject:
   - component: {fileID: 5491720794013440519}
   - component: {fileID: 5491720794013440521}
   - component: {fileID: 5491720794013440520}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tail3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -579,11 +586,11 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0.18574725, y: 0.016135614}
-  m_ConnectedAnchor: {x: -0.15725279, y: 0.0001356483}
+  m_ConnectedAnchor: {x: -0.15725228, y: 0.00013567509}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
-    m_MaximumMotorForce: 10000
+    m_MaximumMotorForce: 100
   m_UseLimits: 1
   m_AngleLimits:
     m_LowerAngle: -20
@@ -599,7 +606,7 @@ GameObject:
   - component: {fileID: 5491720794014090581}
   - component: {fileID: 5491720794014090579}
   - component: {fileID: 5491720794014090580}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AntennaRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -657,7 +664,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.4074094, y: -0.044606306}
-  m_ConnectedAnchor: {x: 0.11075902, y: 0.40295172}
+  m_ConnectedAnchor: {x: 0.11075918, y: 0.40295148}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -678,7 +685,7 @@ GameObject:
   - component: {fileID: 5491720794149142793}
   - component: {fileID: 5491720794149142794}
   - component: {fileID: 5491720794149142795}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RightWing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -752,7 +759,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -1.0334282, y: -0.023582697}
-  m_ConnectedAnchor: {x: 0.266572, y: 0.09641731}
+  m_ConnectedAnchor: {x: 0.2665717, y: 0.09641722}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -773,7 +780,7 @@ GameObject:
   - component: {fileID: 5491720794571723289}
   - component: {fileID: 5491720794571723290}
   - component: {fileID: 5491720794571723291}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tail1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -847,11 +854,11 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0.25719848, y: 0}
-  m_ConnectedAnchor: {x: 0, y: -0.34080148}
+  m_ConnectedAnchor: {x: -0.000000007450581, y: -0.3408013}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
-    m_MaximumMotorForce: 10000
+    m_MaximumMotorForce: 100
   m_UseLimits: 1
   m_AngleLimits:
     m_LowerAngle: -20
@@ -865,7 +872,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5491720794848224851}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Scaler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -910,6 +917,10 @@ PrefabInstance:
     - target: {fileID: -3888481672020999207, guid: 821efb43a667faf47b805a902e2cc068, type: 3}
       propertyPath: m_Name
       value: Tail3
+      objectReference: {fileID: 0}
+    - target: {fileID: -3888481672020999207, guid: 821efb43a667faf47b805a902e2cc068, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8742538545776668643, guid: 821efb43a667faf47b805a902e2cc068, type: 3}
       propertyPath: m_RootOrder
@@ -985,6 +996,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AntennaLeft
       objectReference: {fileID: 0}
+    - target: {fileID: -3888481672020999207, guid: 6ca8d6170c4d8c24097d71085011cc0a, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8742538545776668643, guid: 6ca8d6170c4d8c24097d71085011cc0a, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1058,6 +1073,10 @@ PrefabInstance:
     - target: {fileID: -3888481672020999207, guid: 746a0b09b0026ab4988c4e1c12275b25, type: 3}
       propertyPath: m_Name
       value: Tail1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3888481672020999207, guid: 746a0b09b0026ab4988c4e1c12275b25, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8742538545776668643, guid: 746a0b09b0026ab4988c4e1c12275b25, type: 3}
       propertyPath: m_RootOrder
@@ -1133,6 +1152,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tail4
       objectReference: {fileID: 0}
+    - target: {fileID: -3888481672020999207, guid: 82c7efb06cf309c4cb5185a31165c6b3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8742538545776668643, guid: 82c7efb06cf309c4cb5185a31165c6b3, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1206,6 +1229,10 @@ PrefabInstance:
     - target: {fileID: -3888481672020999207, guid: 26db3b40c3da266409aa52cde01a1744, type: 3}
       propertyPath: m_Name
       value: LeftWingBack
+      objectReference: {fileID: 0}
+    - target: {fileID: -3888481672020999207, guid: 26db3b40c3da266409aa52cde01a1744, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8742538545776668643, guid: 26db3b40c3da266409aa52cde01a1744, type: 3}
       propertyPath: m_RootOrder
@@ -1281,6 +1308,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftWingFront
       objectReference: {fileID: 0}
+    - target: {fileID: -3888481672020999207, guid: 195ec9679b023364ebe558df68322163, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8742538545776668643, guid: 195ec9679b023364ebe558df68322163, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1354,6 +1385,10 @@ PrefabInstance:
     - target: {fileID: -3888481672020999207, guid: ce46f27dccb220c4da2b15e028ec678e, type: 3}
       propertyPath: m_Name
       value: BodyHead
+      objectReference: {fileID: 0}
+    - target: {fileID: -3888481672020999207, guid: ce46f27dccb220c4da2b15e028ec678e, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8742538545776668643, guid: ce46f27dccb220c4da2b15e028ec678e, type: 3}
       propertyPath: m_RootOrder
@@ -1434,6 +1469,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AntennaRight
       objectReference: {fileID: 0}
+    - target: {fileID: -3888481672020999207, guid: 0c8ec0e8b028c6547854a7ddfd47a408, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8742538545776668643, guid: 0c8ec0e8b028c6547854a7ddfd47a408, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1507,6 +1546,10 @@ PrefabInstance:
     - target: {fileID: -3888481672020999207, guid: bd6a7e35b18f58d4989e71ebb7463593, type: 3}
       propertyPath: m_Name
       value: RightWingBack
+      objectReference: {fileID: 0}
+    - target: {fileID: -3888481672020999207, guid: bd6a7e35b18f58d4989e71ebb7463593, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8742538545776668643, guid: bd6a7e35b18f58d4989e71ebb7463593, type: 3}
       propertyPath: m_RootOrder
@@ -1582,6 +1625,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tail2
       objectReference: {fileID: 0}
+    - target: {fileID: -3888481672020999207, guid: 3e10d44fbf2ab4b46831f5e7bda5ad02, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8742538545776668643, guid: 3e10d44fbf2ab4b46831f5e7bda5ad02, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1655,6 +1702,10 @@ PrefabInstance:
     - target: {fileID: -3888481672020999207, guid: 5c3a550f40ec1954199e2010bb30b9c2, type: 3}
       propertyPath: m_Name
       value: RightWingFront
+      objectReference: {fileID: 0}
+    - target: {fileID: -3888481672020999207, guid: 5c3a550f40ec1954199e2010bb30b9c2, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8742538545776668643, guid: 5c3a550f40ec1954199e2010bb30b9c2, type: 3}
       propertyPath: m_RootOrder
