@@ -1126,7 +1126,7 @@ MonoBehaviour:
   _scrollRegion: 0.1
   _inSmoothTime: 0.6
   _outSmoothTime: 0.6
-  _velocityDecay: 4
+  _velocityDecay: 20
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0

@@ -60,6 +60,7 @@ namespace Moth {
         Vector3.zero,
         _velocityDecay * Time.deltaTime
       );
+      transform.position += _currentVelocity * Time.deltaTime;
     }
 
     void OnDrawGizmosSelected() {
