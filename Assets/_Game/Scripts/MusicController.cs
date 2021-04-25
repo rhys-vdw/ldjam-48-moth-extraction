@@ -12,8 +12,10 @@ namespace Moth {
     }
 
     void Update() {
-      if (_winTrigger.DidWin && !_source.isPlaying) {
-        _source.Play();
+      if (_winTrigger.DidWin) {
+        if (!_source.isPlaying) {
+          _source.Play();
+        }
         return;
       }
       if (_brain.IsDead) {
