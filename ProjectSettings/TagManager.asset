@@ -44,3 +44,6 @@ TagManager:
   - name: Moth
     uniqueID: 1267616611
     locked: 0
+  - name: Hook
+    uniqueID: 1741289317
+    locked: 0
