@@ -14,9 +14,8 @@ namespace Moth
 
   public class Moth : MonoBehaviour
   {
-    [Header("References")] [SerializeField]
-    HingeJoint2D[] _bodyJoints = null;
-
+    [Header("References")]
+    [SerializeField] HingeJoint2D[] _tailJoints = null;
     [SerializeField] HingeJoint2D _leftWingJoint = null;
     [SerializeField] HingeJoint2D _rightWingJoint = null;
     [SerializeField] Transform _rightWingScaler = null;
@@ -51,7 +50,7 @@ namespace Moth
 
       if (IsWiggling) {
         var speed = _wiggleSpeed * Mathf.Sin(_wiggleFrequency * Time.time);
-        foreach (var joint in _bodyJoints) {
+        foreach (var joint in _tailJoints) {
           joint.motor = joint.motor.WithSpeed(speed);
         }
       }

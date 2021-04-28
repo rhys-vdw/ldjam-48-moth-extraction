@@ -315,7 +315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c699f32a93652fc499036912deffb89f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bodyJoints:
+  _tailJoints:
   - {fileID: 5491720794571723291}
   - {fileID: 5491720793019013671}
   - {fileID: 5491720794013440520}
