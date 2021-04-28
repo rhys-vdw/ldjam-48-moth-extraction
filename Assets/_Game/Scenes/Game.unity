@@ -3998,7 +3998,6 @@ GameObject:
   - component: {fileID: 1760591295}
   - component: {fileID: 1760591298}
   - component: {fileID: 1760591297}
-  - component: {fileID: 1760591296}
   m_Layer: 0
   m_Name: HookSegment(Clone)
   m_TagString: Untagged
@@ -4022,23 +4021,6 @@ Transform:
   m_Father: {fileID: 1506915861}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1760591296
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1760591294}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a30cb57967646b0b170ea173afdf56d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _spriteRenderers:
-  - {fileID: 376101146}
-  _dragColor: {r: 1, g: 0, b: 0.84050083, a: 1}
-  _rotateSpeed: 45
-  _kinematicOnDrag: 0
 --- !u!233 &1760591297
 HingeJoint2D:
   m_ObjectHideFlags: 0
