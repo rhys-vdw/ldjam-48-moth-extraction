@@ -19,6 +19,8 @@ namespace Moth
       if (c.TryGetComponent<Moth>(out var moth)) {
         _winMessage.gameObject.SetActive(true);
         _title.gameObject.SetActive(false);
+        moth.IsWiggling = false;
+        moth.IsFlapping = true;
         DidWin = true;
         Destroy(gameObject);
       }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Moth
 {
@@ -15,27 +16,31 @@ namespace Moth
   public class Moth : MonoBehaviour
   {
     [Header("References")]
+    [SerializeField] Rigidbody2D _body = null;
     [SerializeField] HingeJoint2D[] _tailJoints = null;
     [SerializeField] HingeJoint2D _leftWingJoint = null;
     [SerializeField] HingeJoint2D _rightWingJoint = null;
     [SerializeField] Transform _rightWingScaler = null;
     [SerializeField] Transform _leftWingScaler = null;
 
-    [Header("Flap")] [SerializeField] float _flapFrequency = 1f;
+    [Header("Flap")]
+    [SerializeField] float _flapFrequency = 1f;
     [SerializeField] float _flapSpeed = 360f;
     [SerializeField] float _minScale = 0.2f;
 
-    [Header("Wiggle")] [SerializeField] float _wiggleFrequency = 1f;
+    [Header("Wiggle")]
+    [SerializeField] float _wiggleFrequency = 1f;
     [SerializeField] float _wiggleSpeed = 360f;
+    [SerializeField] float _wiggleForwardForce = 5f;
 
     public bool IsFlapping = false;
     public bool IsWiggling = false;
 
-    void Update() {
-      if (Draggable.IsAnyDragging) {
+    void Awake() {
+      Draggable.OnFirstDrag += () => {
         IsFlapping = true;
         IsWiggling = true;
-      }
+      };
     }
 
     void FixedUpdate() {
@@ -51,7 +56,13 @@ namespace Moth
       if (IsWiggling) {
         var speed = _wiggleSpeed * Mathf.Sin(_wiggleFrequency * Time.time);
         foreach (var joint in _tailJoints) {
+          joint.useMotor = true;
           joint.motor = joint.motor.WithSpeed(speed);
+        }
+        _body.AddRelativeForce(new Vector2(0, Mathf.Abs(speed) / 360f * _wiggleForwardForce));
+      } else {
+        foreach (var joint in _tailJoints) {
+          joint.useMotor = false;
         }
       }
 

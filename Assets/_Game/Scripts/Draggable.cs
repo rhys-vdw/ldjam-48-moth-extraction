@@ -15,6 +15,8 @@ namespace Moth {
     Vector2 _relativePosition;
 
     public static bool IsAnyDragging { get; private set; }
+    public static event Action OnFirstDrag;
+    static bool _hasAnyDragged = false;
 
     void Awake() {
       _camera = Camera.main;
@@ -37,6 +39,10 @@ namespace Moth {
       _relativePosition = (Vector2) transform.position - position;
       _isDragging = true;
       IsAnyDragging = true;
+      if (!_hasAnyDragged) {
+        OnFirstDrag();
+        _hasAnyDragged = true;
+      }
       _rigidbody2D.isKinematic = _kinematicOnDrag;
       SetColor(_dragColor);
     }
