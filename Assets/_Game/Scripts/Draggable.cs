@@ -9,10 +9,10 @@ namespace Moth {
     bool _isDragging = false;
     static readonly Plane _plane = new Plane(Vector3.back, Vector3.zero);
     Color _defaultColor;
+    [SerializeField] float _dragSpeed = 1f;
     [SerializeField] Color _dragColor = Color.white;
     [SerializeField] float _rotateSpeed = 180f;
     [SerializeField] bool _kinematicOnDrag = true;
-    Vector2 _relativePosition;
 
     public static bool IsAnyDragging { get; private set; }
     public static event Action OnFirstDrag;
@@ -24,19 +24,7 @@ namespace Moth {
       _defaultColor = _spriteRenderers[0].color;
     }
 
-    Vector2 GetPosition() {
-      var ray = _camera.ScreenPointToRay(Input.mousePosition);
-      if (_plane.Raycast(ray, out var enter)) {
-        return ray.GetPoint(enter);
-      }
-
-      Debug.LogError("Could not find world position");
-      return Vector2.zero;
-    }
-
     void OnMouseDown() {
-      var position = GetPosition();
-      _relativePosition = (Vector2) transform.position - position;
       _isDragging = true;
       IsAnyDragging = true;
       Cursor.visible = false;
@@ -75,7 +63,11 @@ namespace Moth {
             _rotateSpeed * Time.deltaTime
           )
         );
-        _rigidbody2D.MovePosition(GetPosition() + _relativePosition);
+        var delta = new Vector2(
+          Input.GetAxis("Mouse X"),
+          Input.GetAxis("Mouse Y")
+        );
+        _rigidbody2D.MovePosition(_rigidbody2D.position + delta * _dragSpeed);
       }
     }
   }
