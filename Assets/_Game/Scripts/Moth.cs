@@ -43,6 +43,11 @@ namespace Moth
       };
     }
 
+    void Start() {
+      IsFlapping = true;
+      IsWiggling = true;
+    }
+
     void FixedUpdate() {
       _leftWingJoint.useMotor = IsFlapping;
       _rightWingJoint.useMotor = IsFlapping;
