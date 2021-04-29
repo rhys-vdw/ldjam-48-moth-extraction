@@ -39,6 +39,8 @@ namespace Moth {
       _relativePosition = (Vector2) transform.position - position;
       _isDragging = true;
       IsAnyDragging = true;
+      Cursor.visible = false;
+      Cursor.lockState = CursorLockMode.Confined;
       if (!_hasAnyDragged) {
         OnFirstDrag();
         _hasAnyDragged = true;
@@ -55,6 +57,8 @@ namespace Moth {
       if (_isDragging && Input.GetMouseButtonUp(0)) {
         _isDragging = false;
         IsAnyDragging = false;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         _rigidbody2D.isKinematic = false;
         SetColor(_defaultColor);
       }
