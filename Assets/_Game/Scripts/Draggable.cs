@@ -43,13 +43,22 @@ namespace Moth {
 
     void Update() {
       if (_isDragging && Input.GetMouseButtonUp(0)) {
-        _isDragging = false;
-        IsAnyDragging = false;
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-        _rigidbody2D.isKinematic = false;
-        SetColor(_defaultColor);
+        StopDragging();
       }
+    }
+
+    void OnDestroy() {
+      StopDragging();
+    }
+
+    void StopDragging() {
+      if (!_isDragging) return;
+      _isDragging = false;
+      IsAnyDragging = false;
+      Cursor.visible = true;
+      Cursor.lockState = CursorLockMode.None;
+      _rigidbody2D.isKinematic = false;
+      SetColor(_defaultColor);
     }
 
     static readonly Quaternion PreferredRotation = Quaternion.Euler(0, 0, 180f);

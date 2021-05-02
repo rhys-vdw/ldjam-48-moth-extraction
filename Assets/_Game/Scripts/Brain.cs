@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Moth {
-  public class Brain : MonoBehaviour
-  {
+  public class Brain : MonoBehaviour {
     [SerializeField] GameObject _splat = null;
+    public event Action OnDeath;
     public bool IsDead { get; private set; } = false;
 
     void Awake() {
@@ -23,13 +23,8 @@ namespace Moth {
         }
       }
       _splat.SetActive(true);
+      OnDeath();
       IsDead = true;
-      StartCoroutine(RestartCoroutine());
-    }
-
-    IEnumerator RestartCoroutine() {
-      yield return new WaitForSeconds(5f);
-      SceneManager.LoadScene(0);
     }
   }
 }
