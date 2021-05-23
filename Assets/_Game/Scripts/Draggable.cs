@@ -72,9 +72,10 @@ namespace Moth {
           )
         );
         var delta = new Vector2(
-          Input.GetAxis("Mouse X"),
-          Input.GetAxis("Mouse Y")
+          Input.GetAxis("Mouse X") / Screen.width,
+          Input.GetAxis("Mouse Y") / Screen.height
         );
+
         _rigidbody2D.MovePosition(_rigidbody2D.position + delta * _dragSpeed);
       }
     }
