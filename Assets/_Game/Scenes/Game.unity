@@ -1358,7 +1358,7 @@ MonoBehaviour:
   - {fileID: 2022673486}
   - {fileID: 710691267}
   - {fileID: 939863565}
-  _dragSpeed: 1024
+  _dragSpeed: 600
   _dragColor: {r: 0.08627451, g: 0.47058827, b: 0.54901963, a: 1}
   _rotateSpeed: 720
   _kinematicOnDrag: 0

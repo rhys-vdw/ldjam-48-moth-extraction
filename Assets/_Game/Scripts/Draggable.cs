@@ -31,9 +31,17 @@ namespace Moth {
       foreach (var r in _spriteRenderers) r.color = color;
     }
 
+    Vector2 _mouseDelta;
     void Update() {
-      if (_isDragging && Input.GetMouseButtonUp(0)) {
-        StopDragging();
+      if (_isDragging) {
+        if (Input.GetMouseButtonUp(0)) {
+          StopDragging();
+        }
+
+        _mouseDelta += new Vector2(
+          Input.GetAxis("Mouse X") / Screen.width,
+          Input.GetAxis("Mouse Y") / Screen.height
+        );
       }
     }
 
@@ -43,6 +51,7 @@ namespace Moth {
 
     void StartDragging() {
       _isDragging = true;
+      _mouseDelta = Vector2.zero;
       Cursor.visible = false;
       Cursor.lockState = CursorLockMode.Confined;
       _rigidbody2D.isKinematic = _kinematicOnDrag;
@@ -71,12 +80,9 @@ namespace Moth {
             _rotateSpeed * Time.deltaTime
           )
         );
-        var delta = new Vector2(
-          Input.GetAxis("Mouse X") / Screen.width,
-          Input.GetAxis("Mouse Y") / Screen.height
-        );
 
-        _rigidbody2D.MovePosition(_rigidbody2D.position + delta * _dragSpeed);
+        _rigidbody2D.MovePosition(_rigidbody2D.position + _mouseDelta * _dragSpeed);
+        _mouseDelta = Vector2.zero;
       }
     }
   }
