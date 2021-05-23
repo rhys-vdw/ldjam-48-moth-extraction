@@ -75,6 +75,9 @@ namespace Moth {
     void HandleBrainDeath() {
       _gameState = GameState.BrainDeath;
       _gameOverCamera.gameObject.SetActive(true);
+
+      _isMusicPlaying = false;
+
       StartCoroutine(RestartCoroutine());
     }
 
