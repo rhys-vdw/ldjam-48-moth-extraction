@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Cinemachine;
+using TMPro;
 
 namespace Moth {
   public class GameManager : MonoBehaviour {
@@ -20,6 +21,7 @@ namespace Moth {
     [SerializeField] GameObject[] _deactivateOnStartGame = null;
     [SerializeField] GameObject[] _activateOnWin = null;
     [SerializeField] GameObject[] _deactivateOnWin = null;
+    [SerializeField] TextMeshPro _versionText = null;
 
     [Header("Cameras")]
     [SerializeField] CinemachineVirtualCamera _mothCamera = null;
