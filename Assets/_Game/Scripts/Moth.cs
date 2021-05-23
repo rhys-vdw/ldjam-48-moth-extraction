@@ -36,18 +36,6 @@ namespace Moth
     public bool IsFlapping = false;
     public bool IsWiggling = false;
 
-    void Awake() {
-      Draggable.OnFirstDrag += () => {
-        IsFlapping = true;
-        IsWiggling = true;
-      };
-    }
-
-    void Start() {
-      IsFlapping = true;
-      IsWiggling = true;
-    }
-
     void FixedUpdate() {
       _leftWingJoint.useMotor = IsFlapping;
       _rightWingJoint.useMotor = IsFlapping;

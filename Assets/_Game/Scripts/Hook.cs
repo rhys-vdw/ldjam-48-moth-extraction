@@ -3,10 +3,11 @@ using EasyButtons;
 
 namespace Moth {
   public class Hook : MonoBehaviour {
+    #pragma warning disable 414
     [SerializeField] Transform _hookPrefab = null;
     [SerializeField] Transform _segmentPrefab = null;
-
     [SerializeField] int _segmentCount = 5;
+    #pragma warning restore 414
 
   #if UNITY_EDITOR
     [Button]

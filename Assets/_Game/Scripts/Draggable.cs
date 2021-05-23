@@ -14,9 +14,8 @@ namespace Moth {
     [SerializeField] float _rotateSpeed = 180f;
     [SerializeField] bool _kinematicOnDrag = true;
 
-    public static bool IsAnyDragging { get; private set; }
-    public static event Action OnFirstDrag;
-    static bool _hasAnyDragged = false;
+    public event Action OnDragStart;
+    public event Action OnDragEnd;
 
     void Awake() {
       _camera = Camera.main;
@@ -25,16 +24,7 @@ namespace Moth {
     }
 
     void OnMouseDown() {
-      _isDragging = true;
-      IsAnyDragging = true;
-      Cursor.visible = false;
-      Cursor.lockState = CursorLockMode.Confined;
-      if (!_hasAnyDragged) {
-        OnFirstDrag();
-        _hasAnyDragged = true;
-      }
-      _rigidbody2D.isKinematic = _kinematicOnDrag;
-      SetColor(_dragColor);
+      StartDragging();
     }
 
     void SetColor(Color color) {
@@ -51,14 +41,23 @@ namespace Moth {
       StopDragging();
     }
 
+    void StartDragging() {
+      _isDragging = true;
+      Cursor.visible = false;
+      Cursor.lockState = CursorLockMode.Confined;
+      _rigidbody2D.isKinematic = _kinematicOnDrag;
+      SetColor(_dragColor);
+      OnDragStart();
+    }
+
     void StopDragging() {
       if (!_isDragging) return;
       _isDragging = false;
-      IsAnyDragging = false;
       Cursor.visible = true;
       Cursor.lockState = CursorLockMode.None;
       _rigidbody2D.isKinematic = false;
       SetColor(_defaultColor);
+      OnDragEnd();
     }
 
     static readonly Quaternion PreferredRotation = Quaternion.Euler(0, 0, 180f);

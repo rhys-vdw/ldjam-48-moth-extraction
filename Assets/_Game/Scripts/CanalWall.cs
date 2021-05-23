@@ -3,8 +3,10 @@ using EasyButtons;
 
 namespace Moth {
   public class CanalWall : MonoBehaviour {
+    #pragma warning disable 414
     [SerializeField] PolygonCollider2D _polygon = null;
     [SerializeField] MeshFilter _meshFilter = null;
+    #pragma warning restore 414
 
   #if UNITY_EDITOR
     [Button]
