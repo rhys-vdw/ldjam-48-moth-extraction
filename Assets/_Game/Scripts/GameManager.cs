@@ -12,25 +12,34 @@ namespace Moth {
       BrainDeath
     }
 
-    [SerializeField] CinemachineVirtualCamera _mothCamera = null;
-    [SerializeField] CinemachineVirtualCamera _handleCamera = null;
-    [SerializeField] CinemachineVirtualCamera _gameOverCamera = null;
+    [Header("References")]
+    [SerializeField] Moth _moth = null;
     [SerializeField] Brain _brain = null;
     [SerializeField] WinTrigger _winTrigger = null;
+    [SerializeField] Draggable _dragHandle = null;
     [SerializeField] GameObject[] _deactivateOnStartGame = null;
     [SerializeField] GameObject[] _activateOnWin = null;
     [SerializeField] GameObject[] _deactivateOnWin = null;
+
+    [Header("Cameras")]
+    [SerializeField] CinemachineVirtualCamera _mothCamera = null;
+    [SerializeField] CinemachineVirtualCamera _handleCamera = null;
+    [SerializeField] CinemachineVirtualCamera _gameOverCamera = null;
+
+    [Header("Audio")]
     [SerializeField] AudioSource _musicSource = null;
-    [SerializeField] Draggable _dragHandle = null;
-    [SerializeField] Moth _moth = null;
+    [SerializeField] float _musicFadeSpeed = 10f;
 
     GameState _gameState = GameState.Title;
+    bool _isMusicPlaying = false;
+    float _musicVolume;
 
     void Start() {
       _brain.OnDeath += HandleBrainDeath;
       _winTrigger.OnWin += HandleWin;
       _dragHandle.OnDragStart += HandleDragStart;
       _dragHandle.OnDragEnd += HandleDragEnd;
+      _musicVolume = _musicSource.volume;
 
       SetActive(_activateOnWin, false);
     }
@@ -43,6 +52,17 @@ namespace Moth {
 #endif
       if (Input.GetKeyDown(KeyCode.R)) {
         SceneManager.LoadScene(0);
+      }
+
+      _musicSource.volume = Mathf.MoveTowards(
+        _musicSource.volume,
+        _isMusicPlaying ? _musicVolume : 0,
+        _musicFadeSpeed * Time.deltaTime
+      );
+      if (_musicSource.volume == 0) {
+        if (_musicSource.isPlaying) _musicSource.Pause();
+      } else if (!_musicSource.isPlaying) {
+        _musicSource.Play();
       }
     }
 
@@ -75,14 +95,14 @@ namespace Moth {
       }
 
       if (_gameState == GameState.Game) {
-        _musicSource.Play();
+        _isMusicPlaying = true;
         _handleCamera.gameObject.SetActive(false);
       }
     }
 
     void HandleDragEnd() {
       if (_gameState == GameState.Game) {
-        _musicSource.Pause();
+        _isMusicPlaying = false;
         _handleCamera.gameObject.SetActive(true);
       }
     }
