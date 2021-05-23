@@ -40,6 +40,10 @@ namespace Moth {
       _dragHandle.OnDragStart += HandleDragStart;
       _dragHandle.OnDragEnd += HandleDragEnd;
       _musicVolume = _musicSource.volume;
+      _musicSource.volume = 0;
+      _musicSource.Stop();
+
+      _versionText.text = _versionText.text.Replace("[VERSION]", Application.version);
 
       SetActive(_activateOnWin, false);
     }
