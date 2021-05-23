@@ -29,6 +29,7 @@ namespace Moth {
     [SerializeField] CinemachineVirtualCamera _gameOverCamera = null;
 
     [Header("Audio")]
+    [SerializeField] AudioSource _splutterSource = null;
     [SerializeField] AudioSource _musicSource = null;
     [SerializeField] float _musicFadeSpeed = 10f;
 
@@ -77,6 +78,7 @@ namespace Moth {
       _gameOverCamera.gameObject.SetActive(true);
 
       _isMusicPlaying = false;
+      _splutterSource.Play();
 
       StartCoroutine(RestartCoroutine());
     }
