@@ -85,6 +85,8 @@ namespace Moth {
       _mothCamera.gameObject.SetActive(false);
       _handleCamera.gameObject.SetActive(false);
 
+      _isMusicPlaying = true;
+
       SetActive(_activateOnWin, true);
       SetActive(_deactivateOnWin, false);
     }
